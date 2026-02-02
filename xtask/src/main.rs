@@ -31,7 +31,7 @@ fn main() -> Result<()> {
             println!("Running cargo clippy...");
             std::process::Command::new("cargo")
                 .arg("clippy")
-                .args(&["--workspace", "--all-targets", "--all-features"])
+                .args(["--workspace", "--all-targets", "--all-features"])
                 .status()?;
         }
         Commands::Test => {
