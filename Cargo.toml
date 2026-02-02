@@ -1,0 +1,29 @@
+[workspace]
+members = [
+    "vpn-core",
+    "vpn-linux",
+    "vpn-macos",
+    "vpn-windows",
+    "vpn-relay",
+    "manage-cli",
+    "daemon",
+    "services",
+    "xtask",
+]
+resolver = "2"
+
+[workspace.dependencies]
+vpn-core = { path = "vpn-core" }
+vpn-linux = { path = "vpn-linux" }
+vpn-macos = { path = "vpn-macos" }
+vpn-windows = { path = "vpn-windows" }
+services = { path = "services" }
+
+log = "0.4"
+fastrace = "0.7"
+anyhow = "1.0"
+# Minimal tokio features, crates enable what they need
+tokio = { version = "1.36", default-features = false } 
+tokio-uring = "0.4"
+clap = { version = "4.5", features = ["derive"] }
+serde = { version = "1.0", features = ["derive"] }

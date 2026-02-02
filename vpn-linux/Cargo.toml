@@ -1,0 +1,10 @@
+[package]
+name = "vpn-linux"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+vpn-core = { workspace = true }
+tokio-uring = { workspace = true }
+anyhow = { workspace = true }
+log = { workspace = true }

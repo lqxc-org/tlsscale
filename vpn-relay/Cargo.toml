@@ -1,0 +1,19 @@
+[package]
+name = "vpn-relay"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+vpn-core = { workspace = true }
+anyhow = { workspace = true }
+log = { workspace = true }
+clap = { workspace = true }
+
+[target.'cfg(target_os = "linux")'.dependencies]
+vpn-linux = { workspace = true }
+
+[target.'cfg(target_os = "macos")'.dependencies]
+vpn-macos = { workspace = true }
+
+[target.'cfg(target_os = "windows")'.dependencies]
+vpn-windows = { workspace = true }
