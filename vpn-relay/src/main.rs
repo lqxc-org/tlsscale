@@ -25,10 +25,12 @@ fn main() -> Result<()> {
 
     start_runtime(async move {
         log::info!("Starting VPN Relay on port {}", args.port);
-        
+
         let addr = format!("0.0.0.0:{}", args.port).parse().unwrap();
-        let device = PlatformDevice::new(addr).await.expect("Failed to create device");
-        
+        let device = PlatformDevice::new(addr)
+            .await
+            .expect("Failed to create device");
+
         if let Err(e) = run(device).await {
             log::error!("Error: {}", e);
         }
@@ -39,7 +41,7 @@ fn main() -> Result<()> {
 
 async fn run(device: impl VpnDevice) -> Result<()> {
     device.start().await?;
-    
+
     let mut buf = vec![0u8; 1500];
     loop {
         match device.recv(&mut buf).await {

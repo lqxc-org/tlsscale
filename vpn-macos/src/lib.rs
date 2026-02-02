@@ -1,7 +1,7 @@
 use anyhow::Result;
-use vpn_core::VpnDevice;
-use tokio::net::UdpSocket;
 use std::net::SocketAddr;
+use tokio::net::UdpSocket;
+use vpn_core::VpnDevice;
 
 pub struct MacOsVpnDevice {
     socket: UdpSocket,
@@ -25,7 +25,10 @@ impl VpnDevice for MacOsVpnDevice {
     }
 
     async fn send(&self, buf: &[u8]) -> Result<usize> {
-        self.socket.send_to(buf, "127.0.0.1:0".parse::<SocketAddr>().unwrap()).await.map_err(|e| e.into())
+        self.socket
+            .send_to(buf, "127.0.0.1:0".parse::<SocketAddr>().unwrap())
+            .await
+            .map_err(|e| e.into())
     }
 
     async fn recv(&self, buf: &mut [u8]) -> Result<usize> {

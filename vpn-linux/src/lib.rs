@@ -1,7 +1,7 @@
 use anyhow::Result;
-use vpn_core::VpnDevice;
-use tokio_uring::net::UdpSocket;
 use std::net::SocketAddr;
+use tokio_uring::net::UdpSocket;
+use vpn_core::VpnDevice;
 
 pub struct LinuxVpnDevice {
     socket: UdpSocket,
@@ -27,7 +27,10 @@ impl VpnDevice for LinuxVpnDevice {
 
     async fn send(&self, buf: &[u8]) -> Result<usize> {
         let owned = buf.to_vec();
-        let (res, _) = self.socket.send_to(owned, "127.0.0.1:0".parse().unwrap()).await; 
+        let (res, _) = self
+            .socket
+            .send_to(owned, "127.0.0.1:0".parse().unwrap())
+            .await;
         res.map_err(|e| e.into())
     }
 
