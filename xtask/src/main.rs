@@ -1,5 +1,5 @@
-use clap::{Parser, Subcommand};
 use anyhow::Result;
+use clap::{Parser, Subcommand};
 
 #[derive(Parser)]
 #[command(name = "xtask")]
@@ -25,15 +25,13 @@ fn main() -> Result<()> {
     match &cli.command {
         Commands::Fmt => {
             println!("Running cargo fmt...");
-            std::process::Command::new("cargo")
-                .arg("fmt")
-                .status()?;
+            std::process::Command::new("cargo").arg("fmt").status()?;
         }
         Commands::Lint => {
             println!("Running cargo clippy...");
             std::process::Command::new("cargo")
                 .arg("clippy")
-                .args(&["--workspace", "--all-targets", "--all-features"])
+                .args(["--workspace", "--all-targets", "--all-features"])
                 .status()?;
         }
         Commands::Test => {

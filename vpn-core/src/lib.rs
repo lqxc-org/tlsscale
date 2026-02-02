@@ -1,8 +1,8 @@
 use anyhow::Result;
 
-pub mod wireguard;
 pub mod dns;
 pub mod proxy;
+pub mod wireguard;
 
 /// The abstract interface for a VPN Device implementation.
 /// Uses native async fn (Return Position Impl Trait In Trait) available in Rust 2024.
@@ -10,7 +10,7 @@ pub mod proxy;
 pub trait VpnDevice {
     /// Start the VPN device/interface
     async fn start(&self) -> Result<()>;
-    
+
     /// Stop the VPN device
     async fn stop(&self) -> Result<()>;
 
